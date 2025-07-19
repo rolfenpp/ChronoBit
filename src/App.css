@@ -1,0 +1,30 @@
+.calendar-cell {
+  transition: border 0.18s, background 0.18s;
+}
+
+.calendar-cell:hover {
+  border-color: #bcbcff;
+  z-index: 2;
+}
+
+.calendar-tooltip {
+  display: none;
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30,30,40,0.98);
+  color: #fff;
+  padding: 0.4em 1em;
+  border-radius: 8px;
+  font-size: 0.95vw;
+  font-weight: 300;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18);
+  pointer-events: none;
+  margin-bottom: 6px;
+}
+
+.calendar-cell:hover .calendar-tooltip {
+  display: block;
+}
