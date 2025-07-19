@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function getCurrentDateTimeLocal() {
   const now = new Date();
-  now.setSeconds(0, 0); // Remove seconds and ms for input compatibility
+  now.setSeconds(0, 0);
   const offset = now.getTimezoneOffset();
   const local = new Date(now.getTime() - offset * 60000);
   return local.toISOString().slice(0, 16);
@@ -12,7 +12,6 @@ const ClaimFormOverlay = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [dateTime, setDateTime] = useState(getCurrentDateTimeLocal());
 
-  // Handler for the random time button
   const handlePickRandom = (e: React.MouseEvent) => {
     e.preventDefault();
     console.log('Pick random unclaimed time clicked');
@@ -20,7 +19,6 @@ const ClaimFormOverlay = () => {
 
   return (
     <>
-      {/* Style for white calendar icon in Chromium browsers and button animation */}
       <style>{`
         input[type="datetime-local"]::-webkit-calendar-picker-indicator {
           filter: invert(1) brightness(2);
@@ -38,10 +36,10 @@ const ClaimFormOverlay = () => {
           alignItems: 'center',
           justifyContent: 'center',
           zIndex: 20,
-          pointerEvents: 'none', // allow 3D controls to work except for form
+          pointerEvents: 'none',
         }}
       >
-        <div style={{ textAlign: 'center', color: '#fff', /* fontFamily: 'Poppins, Montserrat, Arial, sans-serif', */ pointerEvents: 'auto' }}>
+        <div style={{ textAlign: 'center', color: '#fff', pointerEvents: 'auto' }}>
           <h1 style={{
             fontWeight: 200,
             fontStyle: 'italic',
@@ -124,7 +122,6 @@ const ClaimFormOverlay = () => {
                   padding: 0,
                 }}
               >
-                {/* Shuffle/Random SVG icon */}
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="16 3 21 3 21 8" />
                   <line x1="4" y1="20" x2="21" y2="3" />

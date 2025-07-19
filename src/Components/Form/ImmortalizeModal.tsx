@@ -85,7 +85,6 @@ const ImmortalizeModal: React.FC<ImmortalizeModalProps> = ({
 
   return (
     <>
-      {/* Backdrop */}
       <div
         style={{
           position: 'fixed',
@@ -103,7 +102,6 @@ const ImmortalizeModal: React.FC<ImmortalizeModalProps> = ({
         }}
         onClick={handleClose}
       >
-        {/* Modal */}
         <div
           style={{
             background: 'rgba(30, 30, 40, 0.95)',
@@ -120,7 +118,6 @@ const ImmortalizeModal: React.FC<ImmortalizeModalProps> = ({
           }}
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header */}
           <div style={{ marginBottom: '1.5rem' }}>
             <h2 style={{
               color: '#fff',
@@ -141,7 +138,6 @@ const ImmortalizeModal: React.FC<ImmortalizeModalProps> = ({
             </p>
           </div>
 
-          {/* Basic Confirmation */}
           <div style={{ marginBottom: '1.5rem' }}>
             <p style={{
               color: '#e0e0f0',
@@ -154,7 +150,6 @@ const ImmortalizeModal: React.FC<ImmortalizeModalProps> = ({
             </p>
           </div>
 
-          {/* Expand Button */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             style={{
@@ -200,10 +195,8 @@ const ImmortalizeModal: React.FC<ImmortalizeModalProps> = ({
             </svg>
           </button>
 
-          {/* Expanded Content */}
           {isExpanded && (
             <div style={{ marginBottom: '1.5rem' }}>
-              {/* Text Input */}
               <div style={{ marginBottom: '1rem' }}>
                 <label style={{
                   display: 'block',
@@ -241,7 +234,6 @@ const ImmortalizeModal: React.FC<ImmortalizeModalProps> = ({
                 />
               </div>
 
-              {/* Image Upload */}
               <div>
                 <label style={{
                   display: 'block',
@@ -349,7 +341,6 @@ const ImmortalizeModal: React.FC<ImmortalizeModalProps> = ({
             </div>
           )}
 
-          {/* Action Buttons */}
           <div style={{
             display: 'flex',
             gap: '1rem',

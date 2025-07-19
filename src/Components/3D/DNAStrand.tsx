@@ -9,14 +9,13 @@ const HELIX_PITCH = 0.95;
 const HELIX_TURNS = 3;
 const BACKBONE_RADIUS = 0.18;
 const BASE_PAIR_RADIUS = 0.28;
-const CONNECTOR_RADIUS = 0.09; // Thinner for ladder look
+const CONNECTOR_RADIUS = 0.09;
 const COLORS = ['#6ee7b7', '#f472b6', '#60a5fa', '#fbbf24'];
 
 function DNAHelix() {
   const outerGroup = useRef<THREE.Group>(null);
   const innerGroup = useRef<THREE.Group>(null);
 
-  // Calculate helix points and backbone points from rung ends
   const { basePairs, backbonePoints1, backbonePoints2 } = useMemo(() => {
     const basePairs = [];
     const backbonePoints1 = [];
@@ -43,52 +42,44 @@ function DNAHelix() {
 
   useFrame(({ clock }) => {
     if (outerGroup.current) {
-      outerGroup.current.rotation.z = Math.PI / 2; // Lay flat (horizontal)
+      outerGroup.current.rotation.z = Math.PI / 2;
     }
     if (innerGroup.current) {
-      innerGroup.current.rotation.y = -clock.getElapsedTime() * 0.12; // Turn around long axis
+      innerGroup.current.rotation.y = -clock.getElapsedTime() * 0.12;
     }
   });
 
   return (
     <group ref={outerGroup}>
       <group ref={innerGroup}>
-        {/* Backbone 1 (left) */}
         <mesh>
           <tubeGeometry args={[new THREE.CatmullRomCurve3(backbonePoints1), 256, BACKBONE_RADIUS, 24, false]} />
           <meshStandardMaterial color="#60a5fa" metalness={0.3} roughness={0.3} />
         </mesh>
-        {/* Backbone 2 (right) */}
         <mesh>
           <tubeGeometry args={[new THREE.CatmullRomCurve3(backbonePoints2), 256, BACKBONE_RADIUS, 24, false]} />
           <meshStandardMaterial color="#f472b6" metalness={0.3} roughness={0.3} />
         </mesh>
-        {/* Base pairs */}
         {basePairs.map((bp, i) => {
-          // Calculate midpoint and quaternion for cylinder
           const start = new THREE.Vector3(...bp.left);
           const end = new THREE.Vector3(...bp.right);
           const mid = start.clone().add(end).multiplyScalar(0.5);
           const dir = end.clone().sub(start).normalize();
           const length = start.distanceTo(end);
-          // Cylinder default is along Y axis, so align to dir
           const quaternion = new THREE.Quaternion().setFromUnitVectors(
             new THREE.Vector3(0, 1, 0),
             dir
           );
           return (
             <group key={i}>
-              {/* Left sphere */}
               <mesh position={bp.left as [number, number, number]}>
                 <sphereGeometry args={[BASE_PAIR_RADIUS, 20, 20]} />
                 <meshStandardMaterial color={bp.color} />
               </mesh>
-              {/* Right sphere */}
               <mesh position={bp.right as [number, number, number]}>
                 <sphereGeometry args={[BASE_PAIR_RADIUS, 20, 20]} />
                 <meshStandardMaterial color={bp.color} />
               </mesh>
-              {/* Ladder rung connector */}
               <mesh position={mid.toArray()} quaternion={quaternion}>
                 <cylinderGeometry args={[CONNECTOR_RADIUS, CONNECTOR_RADIUS, length, 20]} />
                 <meshStandardMaterial color={bp.color} metalness={0.2} roughness={0.4} />

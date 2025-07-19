@@ -1,5 +1,5 @@
 import React from 'react';
-import { months, getDaysInMonth, formatDateDisplay } from './dateUtils';
+import { getDaysInMonth, formatDateDisplay } from './dateUtils';
 
 interface MonthGridProps {
   year: number;
@@ -50,7 +50,6 @@ const MonthGrid: React.FC<MonthGridProps> = ({ year, monthIdx, selected, onSelec
                 position: 'relative',
               }}
             >
-              {/* Tooltip on hover */}
               {isSelected && (
                 <div
                   style={{
@@ -74,13 +73,11 @@ const MonthGrid: React.FC<MonthGridProps> = ({ year, monthIdx, selected, onSelec
                   {formatDateDisplay(monthIdx, day, year)}
                 </div>
               )}
-              {/* Day number */}
               {day + 1}
             </div>
           </div>
         );
       } else {
-        // Empty cell
         grid.push(
           <div key={monthIdx + '-empty-' + col + '-' + row} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ width: '100%', height: '100%', aspectRatio: '1', opacity: 0 }} />

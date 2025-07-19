@@ -13,14 +13,12 @@ function WaveGridParticles() {
   const positionsRef = useRef<Float32Array | null>(null);
   const amplitudesRef = useRef<Float32Array | null>(null);
 
-  // Pulsating circle parameters
   const NUM_CIRCLES = 18;
-  const CIRCLE_RADIUS = 7; // in world units
+  const CIRCLE_RADIUS = 7;
   const circleCentersRef = useRef<{ x: number; z: number; phase: number }[]>([]);
 
-  // Cosmic color palette
-  const BACKGROUND_COLOR = [0.13, 0.13, 0.23]; // #000000
-  const LIGHTER_COLOR = [0.7, 0.8, 1.0]; // light blueish for visible dots
+  const BACKGROUND_COLOR = [0.13, 0.13, 0.23];
+  const LIGHTER_COLOR = [0.7, 0.8, 1.0];
 
   function lerpColor(a: number[], b: number[], t: number): number[] {
     return [
@@ -30,11 +28,9 @@ function WaveGridParticles() {
     ];
   }
 
-  // Create grid particle positions, random amplitudes, and random circle centers
   useEffect(() => {
     const positions = [];
     const amplitudes = [];
-    // Generate random circle centers and phases
     const centers = [];
     for (let i = 0; i < NUM_CIRCLES; i++) {
       centers.push({
@@ -56,7 +52,6 @@ function WaveGridParticles() {
     amplitudesRef.current = new Float32Array(amplitudes);
   }, []);
 
-  // Generate initial positions
   const positions = React.useMemo(() => {
     const arr = [];
     for (let x = 0; x < GRID_SIZE; x++) {
@@ -69,7 +64,6 @@ function WaveGridParticles() {
     return new Float32Array(arr);
   }, []);
 
-  // Color attribute for each point
   const colors = useRef<Float32Array>(new Float32Array(GRID_SIZE * GRID_SIZE * 3));
 
   useFrame(({ clock }) => {
@@ -94,7 +88,6 @@ function WaveGridParticles() {
           Math.sin(t * 0.7 + xCentered * 0.12 - zCentered * 0.27) * WAVE_HEIGHT * 0.2
         );
         pointsRef.current.geometry.attributes.position.setY(idx, y);
-        // Find the closest circle center
         let maxPulse = 0;
         for (let c = 0; c < centers.length; c++) {
           const dx = xVal - centers[c].x;
@@ -105,13 +98,10 @@ function WaveGridParticles() {
             if (pulse > maxPulse) maxPulse = pulse;
           }
         }
-        // When pulse is at its max, disappear (color = background)
-        // For lower pulse, interpolate between background and lighter color
         let color;
         if (maxPulse > 0.95) {
           color = BACKGROUND_COLOR;
         } else {
-          // t goes from 0 (background) to 1 (lighter color) as pulse increases
           const tColor = Math.max(0, maxPulse / 0.95);
           color = lerpColor(BACKGROUND_COLOR, LIGHTER_COLOR, tColor);
         }
@@ -126,7 +116,6 @@ function WaveGridParticles() {
     }
   });
 
-  // Add color attribute to geometry
   React.useEffect(() => {
     if (pointsRef.current) {
       pointsRef.current.geometry.setAttribute('color', new THREE.BufferAttribute(colors.current, 3));

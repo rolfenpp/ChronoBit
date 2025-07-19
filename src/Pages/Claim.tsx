@@ -5,9 +5,7 @@ import DateGrid from '../Components/Form/DateGrid';
 const Claim = () => {
   return (
     <>
-      {/* Persistent animated background */}
       <WaveGridBackground />
-      {/* Scroll snap container */}
       <div
         className="claim-scroll-container"
         style={{

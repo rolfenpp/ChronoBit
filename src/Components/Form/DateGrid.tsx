@@ -19,7 +19,7 @@ const DateGrid: React.FC = () => {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [selectedDates, setSelectedDates] = useState<SelectedDate[]>([]);
   const [hovered, setHovered] = useState<{ month: number; day: number } | null>(null);
-  const [viewMonth, setViewMonth] = useState<number | null>(null); // null = year view, 0-11 = month view
+  const [viewMonth, setViewMonth] = useState<number | null>(null);
   const [currentView, setCurrentView] = useState<ViewType>('year');
   const [year, setYear] = useState<number>(new Date().getFullYear());
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -83,13 +83,9 @@ const DateGrid: React.FC = () => {
 
   const handleModalConfirm = (data: { dates: SelectedDate[]; text?: string; image?: File }) => {
     console.log('Immortalizing:', data);
-    // Here you would typically send the data to your backend
-    // For now, just clear the selection and close modal
     setSelected(new Set());
     setSelectedDates([]);
     setIsModalOpen(false);
-    
-    // You could show a success message here
     alert(`Successfully immortalized ${data.dates.length} moment(s)!`);
   };
 
@@ -135,7 +131,6 @@ const DateGrid: React.FC = () => {
           </div>
         )}
 
-      {/* Immortalize Modal */}
       <ImmortalizeModal
         isOpen={isModalOpen}
         selectedDates={selectedDates}

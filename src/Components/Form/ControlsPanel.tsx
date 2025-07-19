@@ -23,7 +23,7 @@ interface ControlsPanelProps {
   onYearChange: (year: number) => void;
   selectedDates: SelectedDate[];
   onImmortalizeClick: () => void;
-  onClearSelection: () => void; // Add this prop
+  onClearSelection: () => void;
 }
 
 const ControlsPanel: React.FC<ControlsPanelProps> = ({
@@ -144,7 +144,6 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
         </div>
       </div>
 
-      {/* Year Navigator */}
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{
           display: 'flex',
@@ -262,9 +261,7 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
         </div>
       </div>
 
-      {/* Immortalize Button */}
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {/* Clear Selection Button */}
         <button
           onClick={selectedDates.length > 0 ? onClearSelection : undefined}
           disabled={selectedDates.length === 0}

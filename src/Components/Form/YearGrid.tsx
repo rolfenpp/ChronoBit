@@ -59,7 +59,6 @@ const YearGrid: React.FC<YearGridProps> = ({ year, selected, onSelect, onMonthCl
                 onClick={() => { if (isValid) onSelect(monthIdx, dayIdx); }}
               >
                 {isValid ? dayIdx + 1 : ''}
-                {/* Tooltip */}
                 {isValid && (
                   <div className="calendar-tooltip">
                     {formatDateDisplay(monthIdx, dayIdx, year)}

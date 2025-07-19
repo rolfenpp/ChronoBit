@@ -8,7 +8,6 @@ const Profile: React.FC = () => {
         <WaveGridBackground />
       <h1 style={{ fontSize: '2.5rem', fontWeight: 600, marginBottom: '1.5rem' }}>Profile</h1>
       <div style={{ fontSize: '1.2rem', opacity: 0.7 }}>
-        {/* Profile details and actions will go here */}
         This is your profile page. Add your user info, settings, and more here.
       </div>
     </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ClaimFormOverlay = () => {
-  // Handler for the random time button
   const handlePickRandom = (e: React.MouseEvent) => {
     e.preventDefault();
     console.log('Pick random unclaimed time clicked');
@@ -20,7 +19,7 @@ const ClaimFormOverlay = () => {
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 20,
-        pointerEvents: 'none', // allow 3D controls to work except for form
+        pointerEvents: 'none',
       }}
     >
       <div style={{ textAlign: 'center', color: '#fff', pointerEvents: 'auto' }}>

@@ -10,7 +10,7 @@ export const isLeapYear = (year: number): boolean => {
 export const getDaysInMonth = (month: number, year: number): number => {
   const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   
-  if (month === 1 && isLeapYear(year)) { // February in leap year
+  if (month === 1 && isLeapYear(year)) {
     return 29;
   }
   

@@ -1,69 +1,66 @@
-# React + TypeScript + Vite
+# ChronoBit Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React TypeScript frontend for **ChronoBit** - a digital real estate application where users can claim historical dates as NFTs.
 
-Currently, two official plugins are available:
+## About
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ChronoBit allows users to:
+- Browse and claim historical dates as digital assets
+- View interactive 3D visualizations and animations
+- Manage their claimed dates through a user-friendly interface
+- Navigate through different time periods with calendar components
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Interactive 3D Components**: DNA strands, time spheres, and wave grid backgrounds
+- **Calendar Interface**: Year, month, and date selection grids
+- **Claim System**: Form overlays and modals for claiming dates
+- **User Management**: Profile and vault pages for managing assets
+- **Modern UI**: Built with React, TypeScript, and Vite
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Frontend**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: CSS with modern animations
+- **3D Graphics**: Custom Three.js components
+- **State Management**: React hooks and context
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting Started
+
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Start development server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+## Project Structure
+
+```
+src/
+├── Components/
+│   ├── 3D/           # 3D visualization components
+│   ├── Form/         # Calendar and form components
+│   └── Navigation.tsx
+├── Pages/            # Main application pages
+├── api/              # API integration
+└── assets/           # Static assets
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This project uses:
+- **ESLint** for code quality
+- **TypeScript** for type safety
+- **Vite** for fast development and building
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+For detailed ESLint configuration, see `eslint.config.js`.

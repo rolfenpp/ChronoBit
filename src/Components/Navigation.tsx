@@ -28,7 +28,6 @@ const Navigation = () => {
       padding: '0 2rem',
       boxShadow: '0 2px 20px rgba(0, 0, 0, 0.1)',
     }}>
-      {/* Logo/Brand */}
       <div style={{
         color: '#fff',
         fontSize: '1.5rem',
@@ -39,7 +38,6 @@ const Navigation = () => {
         Chronobit
       </div>
 
-      {/* Navigation Links */}
       <div style={{
         display: 'flex',
         gap: '2rem',
